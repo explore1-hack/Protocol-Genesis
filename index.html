@@ -5,101 +5,178 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code + Clarity + Control</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #0f1117;
-  --card: #161b22;
-  --text: #d1d5db;
-  --muted: #9ca3af;
-  --accent: #5e81ac;
-  --border: #22262e;
+:root{
+  --bg:#0b0f1a;
+  --panel:#121826;
+  --border:#1f2937;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --grad:linear-gradient(90deg,#4f46e5,#06b6d4);
+  --grad-soft:linear-gradient(135deg,#4f46e522,#06b6d422);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
-  line-height: 1.7;
-  padding: 40px 20px;
+/* subtle background glow */
+body::before{
+  content:"";
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,#4f46e533,transparent 70%);
+  top:-200px;
+  right:-200px;
+  z-index:-1;
 }
 
-.container {
-  max-width: 720px;
-  margin: auto;
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:40px 24px;
 }
 
-h1, h2, h3 {
-  font-weight: 600;
-  margin-bottom: 16px;
-  color: #ffffff;
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--border);
 }
 
-h1 {
-  font-size: 2rem;
+.logo{
+  font-weight:800;
+  font-size:1.1rem;
 }
 
-h2 {
-  font-size: 1.4rem;
-  margin-top: 60px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
+.logo span{
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-family:'JetBrains Mono', monospace;
 }
 
-p {
-  margin-bottom: 16px;
-  color: var(--text);
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:28px;
 }
 
-ul {
-  margin-left: 20px;
-  margin-bottom: 16px;
+nav a{
+  text-decoration:none;
+  color:var(--muted);
+  font-size:.95rem;
+  transition:.2s;
 }
 
-li {
-  margin-bottom: 8px;
+nav a:hover{
+  color:var(--text);
 }
 
-blockquote {
-  border-left: 3px solid var(--accent);
-  padding-left: 16px;
-  color: var(--muted);
-  margin: 20px 0;
+/* HERO */
+.hero{
+  padding:100px 0 80px;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
+.hero h1{
+  font-size:3rem;
+  font-weight:800;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:20px;
 }
 
-a:hover {
-  text-decoration: underline;
+.hero p{
+  font-size:1.1rem;
+  color:var(--muted);
+  max-width:700px;
 }
 
-code {
-  font-family: 'Fira Code', monospace;
-  background: var(--card);
-  padding: 2px 6px;
-  border-radius: 4px;
+.philosophy{
+  margin-top:40px;
+  padding:24px;
+  background:var(--grad-soft);
+  border:1px solid var(--border);
+  border-radius:16px;
+  font-family:'JetBrains Mono', monospace;
+  font-size:.95rem;
 }
 
-.section {
-  margin-top: 40px;
+/* SECTIONS */
+section{
+  margin-top:100px;
 }
 
-.footer {
-  margin-top: 80px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  font-size: 0.9rem;
-  color: var(--muted);
+h2{
+  font-size:1.6rem;
+  margin-bottom:30px;
+  position:relative;
+}
+
+h2::after{
+  content:"";
+  width:60px;
+  height:3px;
+  background:var(--grad);
+  position:absolute;
+  bottom:-8px;
+  left:0;
+  border-radius:4px;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:24px;
+  border-radius:18px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:#374151;
+}
+
+.card strong{
+  display:block;
+  margin-bottom:12px;
+  font-size:1.05rem;
+}
+
+ul{
+  margin-left:18px;
+}
+
+li{
+  margin-bottom:8px;
+  color:var(--muted);
+}
+
+/* FOOTER */
+.footer{
+  margin-top:120px;
+  padding-top:30px;
+  border-top:1px solid var(--border);
+  font-size:.9rem;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -107,116 +184,96 @@ code {
 <body>
 <div class="container">
 
-<!-- HERO -->
+<nav>
+  <div class="logo">dev<span>.lab</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#roadmap">Roadmaps</a></li>
+    <li><a href="#notes">Notes</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
 
-<h1>Build skill. Remove noise. Ship real understanding.</h1>
+<div class="hero">
+  <h1>Code. Clarity. Control.</h1>
+  <p>
+    Backend-focused computer science student documenting Django,
+    core CS fundamentals, GATE preparation, AI exploration,
+    and disciplined long-term skill building.
+  </p>
 
-<p>
-Computer Science student documenting backend development, Django practice, 
-GATE preparation, and disciplined learning — without shortcuts or hype.
-</p>
+  <div class="philosophy">
+    Code is leverage.<br>
+    Clarity removes confusion.<br>
+    Control is built through discipline.
+  </div>
+</div>
 
-<blockquote>
-Code is leverage.<br>
-Clarity is protection.<br>
-Control is discipline.
-</blockquote>
+<section id="about">
+  <h2>About</h2>
+  <div class="card">
+    This is not a marketing portfolio.
+    It is a structured record of learning, experimentation,
+    and disciplined technical growth.
+  </div>
+</section>
 
----
+<section id="roadmap">
+  <h2>Learning Roadmaps</h2>
+  <div class="grid">
+    <div class="card">
+      <strong>Backend Foundations</strong>
+      <ul>
+        <li>HTTP & Web Internals</li>
+        <li>SQL & Schema Design</li>
+        <li>REST Architecture</li>
+        <li>Authentication & Security</li>
+        <li>Deployment Basics</li>
+      </ul>
+    </div>
 
-<h2>About</h2>
+    <div class="card">
+      <strong>Django Deep Dive</strong>
+      <ul>
+        <li>Project Structure</li>
+        <li>ORM Mastery</li>
+        <li>Views & Patterns</li>
+        <li>Auth Systems</li>
+        <li>Production Deployment</li>
+      </ul>
+    </div>
 
-<p>
-This is not a portfolio built to impress recruiters.
-It is a public notebook.
-</p>
+    <div class="card">
+      <strong>CS Core (GATE)</strong>
+      <ul>
+        <li>Data Structures & Algorithms</li>
+        <li>Operating Systems</li>
+        <li>DBMS</li>
+        <li>Computer Networks</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-<p>
-I am currently:
-</p>
+<section id="notes">
+  <h2>Notes & Insights</h2>
+  <div class="card">
+    Debugging lessons, architecture mistakes,
+    study systems, AI experiments,
+    and discipline frameworks.
+  </div>
+</section>
 
-<ul>
-<li>Learning backend development with Django</li>
-<li>Strengthening core CS fundamentals</li>
-<li>Preparing for GATE</li>
-<li>Exploring AI systems</li>
-<li>Studying psychology and discipline</li>
-</ul>
-
-<p>
-No shortcuts. No inflated claims.  
-Just documented process.
-</p>
-
----
-
-<h2>Learning Roadmaps</h2>
-
-<h3>Backend Foundations</h3>
-<ul>
-<li>How the web works (HTTP)</li>
-<li>Databases properly understood</li>
-<li>REST principles</li>
-<li>Authentication & security basics</li>
-<li>Deployment fundamentals</li>
-</ul>
-
-<h3>Django Path</h3>
-<ul>
-<li>Project architecture</li>
-<li>Models & ORM</li>
-<li>Views (function vs class-based)</li>
-<li>Authentication systems</li>
-<li>Production deployment</li>
-</ul>
-
-<h3>Computer Science Core</h3>
-<ul>
-<li>Data Structures & Algorithms</li>
-<li>Operating Systems basics</li>
-<li>DBMS concepts</li>
-<li>Computer Networks</li>
-<li>Structured GATE preparation</li>
-</ul>
-
----
-
-<h2>Notes & Insights</h2>
-
-<p>
-Short technical notes and study reflections.
-</p>
-
-<ul>
-<li>Debugging mistakes and what they taught me</li>
-<li>Architecture decisions that failed</li>
-<li>Study systems that worked</li>
-<li>Study systems that didn’t</li>
-<li>AI experiments and observations</li>
-</ul>
-
----
-
-<h2>Resources</h2>
-
-<p>
-Coming later.
-Only tools and courses I personally use and review.
-If affiliate links are added, they will be clearly disclosed.
-</p>
-
----
-
-<h2>Connect</h2>
-
-<ul>
-<li><a href="#">GitHub</a></li>
-<li><a href="#">YouTube</a></li>
-<li><a href="#">Instagram</a></li>
-</ul>
+<section id="resources">
+  <h2>Resources</h2>
+  <div class="card">
+    Curated tools and courses (coming later).
+    Personally tested. Clearly disclosed.
+  </div>
+</section>
 
 <div class="footer">
-© 2026 — Built with discipline.
+  © 2026 — Built deliberately.
 </div>
 
 </div>
