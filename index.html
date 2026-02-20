@@ -1,219 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Protocol Genesis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code + Clarity + Control</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Inter',system-ui;
-  background:#070711;
-  color:#e9ecff;
-  line-height:1.7;
-  overflow-x:hidden;
+:root {
+  --bg: #0f1117;
+  --card: #161b22;
+  --text: #d1d5db;
+  --muted: #9ca3af;
+  --accent: #5e81ac;
+  --border: #22262e;
 }
 
-/* ---------------------- Background Orbs + Parallax ---------------------- */
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
-.orb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;mix-blend:screen;animation:float 18s linear infinite}
-.orb.cyan{background:#45e4ff}
-.orb.pink{background:#ff4fa9}
-.orb.purple{background:#af7dff}
-@keyframes float{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-50px) translateX(40px)}100%{transform:translateY(0) translateX(0)}}
-
-/* ----------------------------- NAV ----------------------------- */
-nav{position:fixed;top:0;left:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:14px 8%;background:rgba(12,12,26,.55);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);z-index:99}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800}
-.logo-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#5fe0ff,#9f85ff);display:grid;place-items:center;color:#000;font-weight:900;animation:pulse 2.8s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-nav ul{display:flex;list-style:none;gap:26px}
-nav a{color:#fff;text-decoration:none;font-size:.95rem;opacity:.9}
-nav a:hover{opacity:1}
-.hamburger{display:none;font-size:1.5rem;cursor:pointer}
-@media(max-width:768px){
-  nav ul{position:absolute;top:70px;right:8%;flex-direction:column;gap:10px;background:#0e0e22;padding:14px 16px;border-radius:16px;border:1px solid rgba(255,255,255,.12);display:none}
-  nav ul.open{display:flex}
-  .hamburger{display:block}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* ----------------------------- GLOBAL ----------------------------- */
-section{padding:100px 8%}
-.fade-up{opacity:0;transform:translateY(38px);transition:.7s cubic-bezier(.2,.65,.25,1)}
-.fade-up.show{opacity:1;transform:translateY(0)}
-h2{font-size:2.2rem;margin-bottom:12px;background:linear-gradient(90deg,#6fe2ff,#c5a4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{opacity:.8;margin-bottom:10px}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+  padding: 40px 20px;
+}
 
-/* buttons */
-.btn{padding:12px 20px;min-height:44px;border-radius:14px;text-decoration:none;font-weight:600;transition:.25s;display:inline-block}
-.btn-primary{background:linear-gradient(135deg,#ff3f8e,#7c5bff);color:#fff}
-.btn-primary:hover{transform:translateY(-4px) scale(1.02)}
-.btn-outline{border:2px solid #6fe2ff;color:#6fe2ff}
-.btn-outline:hover{background:rgba(111,226,255,.12);transform:translateY(-4px)}
+.container {
+  max-width: 720px;
+  margin: auto;
+}
 
-/* ----------------------------- HERO ----------------------------- */
-.hero{padding-top:150px;text-align:center}
-.hero h1{font-size:3.2rem;background:linear-gradient(90deg,#6fe2ff,#a68bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{max-width:760px;margin:10px auto 20px}
-.cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
 
-/* ----------------------------- VIDEO GRID ----------------------------- */
-.video-grid{margin-top:14px;display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
-.video-card{border-radius:18px;overflow:hidden;cursor:pointer;background:#111128;border:1px solid rgba(255,255,255,.12);transition:.35s}
-.video-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 40px rgba(0,0,0,.45)}
-.video-thumb{width:100%;aspect-ratio:16/9;object-fit:cover}
-.video-label{padding:10px 12px;font-size:.9rem;opacity:.85}
+h1 {
+  font-size: 2rem;
+}
 
-/* Popup */
-#playerModal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
-.player-box{width:100%;max-width:900px;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden}
-#playerClose{position:absolute;top:20px;right:20px;font-size:1.6rem;cursor:pointer}
+h2 {
+  font-size: 1.4rem;
+  margin-top: 60px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
 
-/* ----------------------------- BLOGS ----------------------------- */
-.blog-grid{margin-top:16px;display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
-.blog-card{border-radius:18px;padding:12px;background:linear-gradient(135deg,#141428,#191936);border:1px solid rgba(255,255,255,.12);transition:.35s}
-.blog-card:hover{transform:translateY(-6px) scale(1.01)}
-.blog-img{width:100%;border-radius:14px;aspect-ratio:16/9;object-fit:cover}
-.blog-title{margin:10px 0 6px;font-weight:700}
-.blog-link{font-size:.9rem;opacity:.8}
+p {
+  margin-bottom: 16px;
+  color: var(--text);
+}
 
-/* ----------------------------- CONNECT ----------------------------- */
-.social-grid{margin-top:14px;display:grid;gap:14px;grid-template-columns:repeat(3,1fr)}
-.social-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:14px;background:#141428;border:1px solid rgba(255,255,255,.12);color:#fff;text-decoration:none;transition:.25s}
-.social-btn:hover{transform:translateY(-4px)}
+ul {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
 
-/* ----------------------------- FOOTER ----------------------------- */
-footer{text-align:center;padding:30px 8%;opacity:.75;font-size:.85rem}
+li {
+  margin-bottom: 8px;
+}
 
-/* ----------------------------- MOBILE ----------------------------- */
-@media(max-width:992px){.video-grid,.blog-grid{grid-template-columns:repeat(2,1fr)}.social-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.hero h1{font-size:2.3rem}h2{font-size:1.8rem}.video-grid,.blog-grid,.social-grid{grid-template-columns:1fr}}
+blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  color: var(--muted);
+  margin: 20px 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: 'Fira Code', monospace;
+  background: var(--card);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.section {
+  margin-top: 40px;
+}
+
+.footer {
+  margin-top: 80px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
 </style>
 </head>
 
 <body>
-
-<!-- FLOATING ORBS -->
-<div class="bg">
-  <div class="orb cyan"   style="width:260px;height:260px;left:-60px;top:120px"></div>
-  <div class="orb purple" style="width:300px;height:300px;right:-80px;top:260px"></div>
-  <div class="orb pink"   style="width:220px;height:220px;left:40%;top:540px"></div>
-</div>
-
-<!-- NAV -->
-<nav>
-  <div class="logo"><div class="logo-badge">PG</div>Protocol Genesis</div>
-  <i class="fa-solid fa-bars hamburger"></i>
-  <ul id="navMenu">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#videos">Videos</a></li>
-    <li><a href="#series">Series</a></li>
-    <li><a href="#blogs">Blogs</a></li>
-    <li><a href="#connect">Connect</a></li>
-  </ul>
-</nav>
+<div class="container">
 
 <!-- HERO -->
-<section id="home" class="hero fade-up">
-  <h1>Protocol Genesis</h1>
-  <p>Coding with AI — real projects, practical tutorials, and automation you can actually use.</p>
-  <div class="cta">
-    <a class="btn btn-primary" target="_blank" href="https://www.youtube.com/@GenesisProtocol.AIgenz">Subscribe Now</a>
-    <a class="btn btn-outline" target="_blank" href="https://legendcolumn.xyz/?m=1">Read Blog</a>
-  </div>
-</section>
 
-<!-- VIDEOS -->
-<section id="videos" class="fade-up">
-  <h2>🎥 Featured Videos</h2>
-  <p class="sub">Tap any video to watch instantly</p>
-  <div class="video-grid"></div>
-  <br>
-  <a class="btn btn-outline" target="_blank" href="https://www.youtube.com/@GenesisProtocol.AIgenz">View All Videos</a>
-</section>
+<h1>Build skill. Remove noise. Ship real understanding.</h1>
 
-<!-- ✅ PLAYLIST SECTION (NOW AFTER VIDEOS) -->
-<section id="series" class="fade-up">
-  <h2>🔥 Current Series</h2>
-  <p class="sub">Coding With AI — follow the full playlist</p>
-  <div class="blog-grid">
-    <a class="blog-card" target="_blank" href="https://youtube.com/playlist?list=PL-tV5Jw07C2VuxyLnvrFQwi8bEf1fD8UW">
-      <img class="blog-img" src="https://picsum.photos/600/350?random=41">
-      <div class="blog-title">Coding With AI — Playlist</div>
-      <div class="blog-link">Watch the full series</div>
-    </a>
-  </div>
-  <br>
-  <a class="btn btn-primary" target="_blank" href="https://youtube.com/playlist?list=PL-tV5Jw07C2VuxyLnvrFQwi8bEf1fD8UW">Open Playlist</a>
-</section>
+<p>
+Computer Science student documenting backend development, Django practice, 
+GATE preparation, and disciplined learning — without shortcuts or hype.
+</p>
 
-<!-- BLOGS -->
-<section id="blogs" class="fade-up">
-  <h2>📝 Top Blogs</h2>
-  <div class="blog-grid">
-    <a class="blog-card" target="_blank" href="https://www.legendcolumn.xyz/2025/12/blog-post.html">
-      <img class="blog-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8EKGaeq8I6EBIiwGJj3nMJJaVLtAcBwgxjhSTogwOTF7NMNdcUXBR8RRnydvjR5O980KCgrGodfwJ3E74ua1e-Z7XRWb4HmrgfbDpatvV75X306UhsmYFJHZHVZ0NhmT-gEk3aUZiG43IZk0qLGjA3briIpKtmavQSrPsnQRkM6WYfp0LNQufaAEae4o/s16000/Screenshot%202025-12-12%20222929.png">
-      <div class="blog-title">Building My First Python GUI App with AI- Complete Beginner Tutorial</div>
-      <div class="blog-link">Read on LegendColumn</div>
-    </a>
-    <a class="blog-card" target="_blank" href="https://legendcolumn.xyz/?m=1">
-      <img class="blog-img" src="https://picsum.photos/600/350?random=25">
-      <div class="blog-title">Build Your First AI-Powered App</div>
-      <div class="blog-link">Beginner friendly guide</div>
-    </a>
-    <a class="blog-card" target="_blank" href="https://legendcolumn.xyz/?m=1">
-      <img class="blog-img" src="https://picsum.photos/600/350?random=27">
-      <div class="blog-title">Productivity Hacks for Developers</div>
-      <div class="blog-link">Practical workflows</div>
-    </a>
-  </div>
-</section>
+<blockquote>
+Code is leverage.<br>
+Clarity is protection.<br>
+Control is discipline.
+</blockquote>
 
-<!-- CONNECT -->
-<section id="connect" class="fade-up">
-  <h2>🌐 Connect With Me</h2>
-  <div class="social-grid">
-    <a class="social-btn" target="_blank" href="https://www.youtube.com/@GenesisProtocol.AIgenz"><i class="fab fa-youtube"></i>YouTube</a>
-    <a class="social-btn" target="_blank" href="https://instagram.com/genesisprotocol.aigenz"><i class="fab fa-instagram"></i>Instagram</a>
-    <a class="social-btn" target="_blank" href="https://x.com/Genesispro31364"><i class="fab fa-x-twitter"></i>X / Twitter</a>
-    <a class="social-btn" target="_blank" href="https://linkedin.com/in/ashutosh-pandey-b492ba371"><i class="fab fa-linkedin"></i>LinkedIn</a>
-    <a class="social-btn" target="_blank" href="https://github.com/explore1-hack"><i class="fab fa-github"></i>GitHub</a>
-    <a class="social-btn" target="_blank" href="https://whatsapp.com/channel/0029VadLNMU9Gv7bSsXF5p0L"><i class="fab fa-whatsapp"></i>WhatsApp</a>
-  </div>
-</section>
+---
 
-<footer>© 2024 Protocol Genesis | Built with AI 🤖</footer>
+<h2>About</h2>
 
-<!-- PLAYER MODAL -->
-<div id="playerModal"><i id="playerClose" class="fa-solid fa-xmark"></i>
-  <div class="player-box"><iframe id="ytFrame" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe></div>
+<p>
+This is not a portfolio built to impress recruiters.
+It is a public notebook.
+</p>
+
+<p>
+I am currently:
+</p>
+
+<ul>
+<li>Learning backend development with Django</li>
+<li>Strengthening core CS fundamentals</li>
+<li>Preparing for GATE</li>
+<li>Exploring AI systems</li>
+<li>Studying psychology and discipline</li>
+</ul>
+
+<p>
+No shortcuts. No inflated claims.  
+Just documented process.
+</p>
+
+---
+
+<h2>Learning Roadmaps</h2>
+
+<h3>Backend Foundations</h3>
+<ul>
+<li>How the web works (HTTP)</li>
+<li>Databases properly understood</li>
+<li>REST principles</li>
+<li>Authentication & security basics</li>
+<li>Deployment fundamentals</li>
+</ul>
+
+<h3>Django Path</h3>
+<ul>
+<li>Project architecture</li>
+<li>Models & ORM</li>
+<li>Views (function vs class-based)</li>
+<li>Authentication systems</li>
+<li>Production deployment</li>
+</ul>
+
+<h3>Computer Science Core</h3>
+<ul>
+<li>Data Structures & Algorithms</li>
+<li>Operating Systems basics</li>
+<li>DBMS concepts</li>
+<li>Computer Networks</li>
+<li>Structured GATE preparation</li>
+</ul>
+
+---
+
+<h2>Notes & Insights</h2>
+
+<p>
+Short technical notes and study reflections.
+</p>
+
+<ul>
+<li>Debugging mistakes and what they taught me</li>
+<li>Architecture decisions that failed</li>
+<li>Study systems that worked</li>
+<li>Study systems that didn’t</li>
+<li>AI experiments and observations</li>
+</ul>
+
+---
+
+<h2>Resources</h2>
+
+<p>
+Coming later.
+Only tools and courses I personally use and review.
+If affiliate links are added, they will be clearly disclosed.
+</p>
+
+---
+
+<h2>Connect</h2>
+
+<ul>
+<li><a href="#">GitHub</a></li>
+<li><a href="#">YouTube</a></li>
+<li><a href="#">Instagram</a></li>
+</ul>
+
+<div class="footer">
+© 2026 — Built with discipline.
 </div>
 
-<script>
-document.querySelector(".hamburger").onclick=()=>navMenu.classList.toggle("open");
-document.addEventListener("mousemove",e=>{
-  document.querySelectorAll(".orb").forEach((o,i)=>{
-    const s=(i+1)*0.02;o.style.transform=`translate(${e.clientX*s}px,${e.clientY*s*-0.03}px)`
-  });
-});
-const observer=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")})},{threshold:.15});
-document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
-
-const ids=["nTP0YgvYRTQ","uqIEp1RocRs","tqUNiHiNlac","rYYBNBWv8WI","exdbbk5JhyQ","q53-uyM84C0","Dyhymbe4KGw","hZ65gmsM1vk","lJAqa90FNgU"];
-const grid=document.querySelector(".video-grid");
-ids.forEach(id=>{
-  const d=document.createElement("div");
-  d.className="video-card";
-  d.innerHTML=`<img class="video-thumb" src="https://img.youtube.com/vi/${id}/hqdefault.jpg"><div class="video-label">Watch on YouTube</div>`;
-  d.onclick=()=>openPlayer(id);grid.appendChild(d);
-});
-function openPlayer(id){ytFrame.src=`https://www.youtube.com/embed/${id}?autoplay=1`;playerModal.style.display="flex"}
-playerClose.onclick=()=>{ytFrame.src="";playerModal.style.display="none"};
-</script>
+</div>
 </body>
 </html>
-
